@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package ega_pro_index;
+
+message EgaProData {
+  string siren = 1;
+  string nom_etablissement = 2;
+  // ... other fields from your CSV data
+  string data = 10; // catch-all for remaining data
+}
+
+message EgaProRequest {
+  string siren = 1;
+}
+
+message EgaProResponse {
+  oneof response {
+    EgaProData data = 1;
+    string error = 2;
+  }
+}
+
+service EgaProIndexService {
+  rpc GetEgaProData(EgaProRequest) returns (EgaProResponse);
+}
