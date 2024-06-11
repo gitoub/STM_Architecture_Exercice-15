@@ -11,7 +11,7 @@ from flask import Flask, jsonify
 
 egapro_data = {}
 
-with open("./database.csv") as csv:
+with open("./database.csv", encoding="utf-8") as csv:
     reader = DictReader(csv, delimiter=",")
     for row in reader:
         if egapro_data.get(row["SIREN"]) is None:
